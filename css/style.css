@@ -632,6 +632,8 @@ body.modal-open { overflow: hidden; }
   }
   .compare-row { grid-template-columns: 1fr 1fr; }
   .compare-row .col:first-child { display: none; }
+  .promo-card { flex-direction: column; gap: 20px; padding: 32px; }
+  .promo-arrow { transform: rotate(90deg); }
   .float-notif { font-size: 0.68rem; padding: 8px 10px; gap: 8px; width: 168px; }
   .float-notif-label { font-size: 0.6rem; }
   .float-notif-value { font-size: 0.74rem; }

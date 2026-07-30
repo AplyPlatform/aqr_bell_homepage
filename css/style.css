@@ -22,7 +22,7 @@ html { scroll-behavior: smooth; }
 .reg-mark { font-size: 0.55em; font-weight: 400; vertical-align: super; margin-left: 0.05em; }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Inter', 'Noto Sans KR', sans-serif;
   color: var(--black);
   background: var(--white);
   overflow-x: hidden;
@@ -259,6 +259,7 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
 .problem-card .emoji .icon-fa { width: 30px; height: 30px; }
 .bento-icon .icon-fa { width: 22px; height: 22px; }
 .t-icon .icon-fa { width: 26px; height: 26px; }
+.icon-inline-email { display: inline-block; width: 13px; height: 13px; vertical-align: -1px; margin-right: 5px; fill: currentColor; }
 /* icon-svg rule removed to prefer emoji and image icons */
 
 /* ── SECTION WRAPPER ── */
@@ -372,11 +373,25 @@ section { padding: 100px 24px; }
 .bento-card.green p { color: rgba(255,255,255,0.8); }
 
 .big-number {
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 3.5rem; font-weight: 900; color: var(--green);
   letter-spacing: -0.04em; line-height: 1;
   margin-bottom: 8px; display: block;
 }
 .bento-card.green .big-number { color: rgba(255,255,255,0.9); }
+
+.stat-row { display: flex; align-items: center; gap: 16px; margin-top: 20px; margin-bottom: 8px; }
+.stat-row .big-number { margin: 0; }
+.avatar-stack { display: flex; }
+.avatar-stack .avatar-circle {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: white; border: 2px solid var(--green);
+  display: flex; align-items: center; justify-content: center;
+  margin-left: -14px;
+}
+.avatar-stack .avatar-circle:first-child { margin-left: 0; }
+.avatar-stack .avatar-circle .icon-fa { width: 18px; height: 18px; fill: var(--green); }
+.avatar-stack .avatar-circle:last-child .icon-fa { width: 22px; height: 22px; }
 
 /* ── HOW IT WORKS ── */
 #how { background: linear-gradient(135deg, var(--green) 0%, var(--green) 50%, var(--green-dark) 100%); }
@@ -547,7 +562,6 @@ section { padding: 100px 24px; }
 .vs-arrow .store-badge {
   width: 240px;
 }
-.cta-note { font-size: 0.85rem; color: rgba(255,255,255,0.7); }
 
 /* ── FOOTER ── */
 footer {

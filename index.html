@@ -427,6 +427,9 @@
           <option value="etc">기타</option>
         </select>
         <textarea name="message" placeholder="문의 내용을 입력해주세요" rows="4" required></textarea>
+        <!-- 스팸 봇 함정: 사람에게는 보이지 않는 필드 (채워져 오면 서버가 무시) -->
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
+               style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
         <button type="submit" class="btn-primary contact-submit">보내기</button>
       </form>
 
@@ -705,12 +708,45 @@
     const contactSuccess = document.getElementById('contact-success');
     const contactSuccessOk = document.getElementById('contact-success-ok');
     if (contactForm && contactSuccess && contactSuccessOk) {
-      contactForm.addEventListener('submit', (e) => {
+      const CONTACT_API = 'https://asia-northeast3-aqrm-phone.cloudfunctions.net/submitPublicInquiry';
+      const submitBtn = contactForm.querySelector('.contact-submit');
+      contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        // TODO: wire up to the contact-form submission API once available
-        contactForm.reset();
-        contactForm.classList.add('hidden');
-        contactSuccess.classList.add('show');
+        const data = new FormData(contactForm);
+        const payload = {
+          name: String(data.get('name') || '').trim(),
+          email: String(data.get('email') || '').trim(),
+          category: String(data.get('category') || ''),
+          message: String(data.get('message') || '').trim(),
+          website: String(data.get('website') || ''),
+        };
+        const originalLabel = submitBtn ? submitBtn.textContent : '';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = '보내는 중...';
+        }
+        try {
+          const res = await fetch(CONTACT_API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          const result = await res.json().catch(() => ({ ok: false }));
+          if (!res.ok || !result.ok) {
+            alert(result.error || '문의 접수에 실패했습니다. 잠시 후 다시 시도해 주세요.');
+            return;
+          }
+          contactForm.reset();
+          contactForm.classList.add('hidden');
+          contactSuccess.classList.add('show');
+        } catch (err) {
+          alert('네트워크 오류로 접수하지 못했습니다. 잠시 후 다시 시도해 주세요.');
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalLabel;
+          }
+        }
       });
       contactSuccessOk.addEventListener('click', () => {
         contactSuccess.classList.remove('show');

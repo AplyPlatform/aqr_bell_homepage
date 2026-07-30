@@ -563,6 +563,64 @@ section { padding: 100px 24px; }
   width: 240px;
 }
 
+/* ── CONTACT ── */
+#contact {
+  background: linear-gradient(135deg, #f0fdf8 0%, #dff7ee 55%, #c9f0e2 100%);
+}
+/* 문의폼 */
+.contact-form {
+  max-width: 480px; margin: 40px auto 0;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%; padding: 14px 18px; border-radius: var(--radius-sm);
+  border: 1.5px solid #ddd; font-family: inherit; font-size: 0.95rem;
+  background: white; color: var(--black);
+  resize: vertical;
+}
+.contact-form select { appearance: none; background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23666' d='M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z'/%3E%3C/svg%3E") no-repeat right 18px center / 14px; }
+.contact-row { display: flex; gap: 14px; }
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus { outline: none; border-color: var(--green); }
+.contact-form .btn-primary {
+  border: none; cursor: pointer; align-self: center;
+  width: 100%; justify-content: center; margin-top: 6px;
+}
+@media (max-width: 768px) {
+  .contact-row { flex-direction: column; }
+}
+
+/* submit 후 보여질 콘텐츠 */
+.contact-success {
+  display: none; flex-direction: column; align-items: center; gap: 18px;
+  max-width: 480px; margin: 40px auto 0; text-align: center;
+  background: white; border-radius: var(--radius-md);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  padding: 20px 32px;
+}
+.contact-success.show { display: flex; }
+.contact-success .section-desc { margin: 0; }
+.success-icon {
+  width: 44px; height: 44px; fill: var(--green);
+  display: block; flex-shrink: 0; align-self: center;
+  margin: 0 auto 20px;
+}
+.contact-form.hidden { display: none; }
+.btn-outline-gray {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: white; color: var(--black);
+  border: 1.5px solid #ddd;
+  padding: 16px 32px; border-radius: 100px;
+  font-size: 1rem; font-weight: 700;
+  width: 200px; margin-top: 12px;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-outline-gray .icon-fa { width: 14px; height: 14px; fill: currentColor; }
+.btn-outline-gray:hover { border-color: var(--green); color: var(--green); }
+
 /* ── FOOTER ── */
 footer {
   background: #0a0a0a; color: rgba(255,255,255,0.4);

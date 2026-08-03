@@ -701,8 +701,19 @@ body.modal-open { overflow: hidden; }
     border-radius: var(--radius-sm);
     padding: 6px 14px;
   }
-  .compare-row { grid-template-columns: 1fr 1fr; }
-  .compare-row .col:first-child { display: none; }
+  .compare-row { grid-template-columns: 1fr 1fr; border-bottom: 1px solid rgba(0,0,0,0.15); }
+  .compare-row .col.feature-name {
+    grid-column: 1 / -1;
+    padding: 14px 20px 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--gray-mid);
+    border-bottom: 1px dashed rgba(0,162,136,0.15);
+  }
+  .compare-row .col.feature-name + .col { padding-top: 4px; }
+  .compare-row.header .col:first-child { display: none; }
   .promo-card { flex-direction: column; gap: 20px; padding: 32px; }
   .promo-arrow { transform: rotate(90deg); }
   .float-notif { font-size: 0.68rem; padding: 8px 10px; gap: 8px; width: 168px; }
